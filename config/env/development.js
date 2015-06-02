@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/rlog',
 	app: {
 		title: 'Logcat Viewer - Development Environment'
 	},

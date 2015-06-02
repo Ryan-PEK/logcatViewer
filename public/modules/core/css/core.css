@@ -1,5 +1,6 @@
 .content {
 	margin-top: 50px;
+	min-height: 560px;
 }
 .undecorated-link:hover {
 	text-decoration: none;

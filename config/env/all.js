@@ -10,6 +10,7 @@ module.exports = {
     templateEngine: 'swig',
     sessionSecret: 'MEAN',
     sessionCollection: 'sessions',
+    db: 'mongodb://localhost/rlog',
     assets: {
         lib: {
             css: [
@@ -28,7 +29,6 @@ module.exports = {
                 'public/lib/angular-ui-router/release/angular-ui-router.js',
                 'public/lib/angular-ui-utils/ui-utils.js',
                 'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-                'public/lib/nobower/ng-infinite-scroll.min.js',
                 'public/lib/tr-ng-grid/trNgGrid.min.js'
             ]
         },

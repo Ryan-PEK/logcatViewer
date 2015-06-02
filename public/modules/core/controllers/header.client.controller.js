@@ -1,10 +1,8 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', '$rootScope','Authentication', 'Menus',
-	function($scope, $rootScope, Authentication, Menus) {
-		$scope.authentication = Authentication;
+angular.module('core').controller('HeaderController', ['$scope', '$rootScope',
+	function($scope, $rootScope) {
 		$scope.isCollapsed = false;
-		$scope.menu = Menus.getMenu('topbar');
 
 		$scope.toggleCollapsibleMenu = function() {
 			$scope.isCollapsed = !$scope.isCollapsed;
@@ -19,7 +17,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$rootScope','A
 			$('#page_refresh').click();
 		};
 
-		$rootScope.autoScroll = false;
+		$rootScope.autoScroll = true;
         $scope.toggleScroll = function(){
         	$rootScope.autoScroll = !$rootScope.autoScroll;
         	console.log($rootScope.autoScroll);

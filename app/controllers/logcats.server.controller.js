@@ -19,22 +19,18 @@ exports.read = function(req, res) {
  */
 exports.getPageByID = function(req, res) {
     var imei = req.params.imei,
-        from_id = req.params.id - 0,
-        to_id = req.params.id - 0 + 40;
+        from_id = req.params.id - 0;
     mongoose.connection.db.collection('imei_' + req.params.imei, function(err, collection) {
         collection.find({
             _id: {
-                $gte: from_id,
-                $lt: to_id
+                $gte: from_id
             }
         }).toArray(function(err, result) {
             if (result.length > 0) {
-                console.log(result.length);
                 res.json({
                     'next_id': result[result.length - 1]._id - 0 + 1,
                     'page_content': result
                 });
-                console.log(result[result.length - 1]._id);
             } else {
                 res.json({
                     'next_id': req.params.id,

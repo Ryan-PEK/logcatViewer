@@ -4,14 +4,11 @@ angular.module('core').controller('LogcatController', ['$scope', '$rootScope', '
     function($scope, $rootScope, $http, $interval) {
         $scope.records = [];
         $scope.getNextPage = function() {
-            console.log($scope.pageId);
             $http.get('/logcats/' + $rootScope.imei + '/' + $scope.pageId).success(function(response) {
                 $scope.pageId = response.next_id;
-                console.log($scope.pageId);
                 for (var index in response.page_content) {
                     $scope.records.push(response.page_content[index]);
                 }
-                console.log($rootScope.autoScroll);
                 if ($rootScope.autoScroll) {
                     $(window).scrollTop($(document).height());
                 }
@@ -29,7 +26,7 @@ angular.module('core').controller('LogcatController', ['$scope', '$rootScope', '
                         if ((response - 0) === 0) {
                             return false;
                         }
-                        $scope.pageId = response - 40;
+                        $scope.pageId = response - 100;
                         $scope.getNextPage();
                     });
                 } else if ($scope.pageId <= 0) {
@@ -40,7 +37,7 @@ angular.module('core').controller('LogcatController', ['$scope', '$rootScope', '
             }
         };
 
-        $interval($scope.loadMore, 1000);
+        $interval($scope.loadMore, 2000);
 
         $scope.$watch(function() {
             return $rootScope.imei;

@@ -1,12 +1,27 @@
 <section data-ng-controller="LogcatController">
     <div>
-    <!--
+        <!--
         <div ng-repeat='record in records'>
         	{{record}}
         </div>
         -->
-
-        <table tr-ng-grid="" items="records"></table>
+        <table tr-ng-grid="" items="records">
+            <thead>
+                <tr>
+                    </th>
+                    <th field-name="time" display-name="TIME" cell-width="10em" enable-sorting="false" display-align="center">
+                    </th>
+                    <th field-name="pid" display-name="PID" cell-width="4em" enable-sorting="false" display-align="center">
+                    </th>
+                    <th field-name="ppid" display-name="TID" cell-width="4em" enable-sorting="false" display-align="center">
+                    </th>
+                    <th field-name="level" display-name="LEVEL" cell-width="4em" enable-filtering="true" enable-sorting="false" display-align="center">
+                    <th field-name="activity" display-name="TAG" cell-width="5em" enable-sorting="false" display-align="left">
+                    </th>
+                    <th field-name="message" display-name="TEXT" enable-sorting="false" display-align="left">
+                    </th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </section>
-
