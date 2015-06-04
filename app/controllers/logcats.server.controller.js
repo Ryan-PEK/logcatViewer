@@ -20,7 +20,7 @@ exports.read = function(req, res) {
 exports.getPageByID = function(req, res) {
     var imei = req.params.imei,
         from_id = req.params.id - 0;
-    mongoose.connection.db.collection('imei_' + req.params.imei, function(err, collection) {
+    mongoose.connection.db.collection('imei_' + req.params.imeiValue, function(err, collection) {
         collection.find({
             _id: {
                 $gte: from_id
@@ -45,7 +45,7 @@ exports.getPageByID = function(req, res) {
  * List of Articles
  */
 exports.getFirstPageID = function(req, res) {
-    mongoose.connection.db.collection('imei_' + req.params.imei, function(err, collection) {
+    mongoose.connection.db.collection('imei_' + req.params.imeiValue, function(err, collection) {
         collection.count(function(err, count) {
             res.send(count.toString());
         });
