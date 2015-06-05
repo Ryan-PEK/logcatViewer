@@ -31,7 +31,12 @@ echo $ip
 echo $os
 echo $model
 
+currentpath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+adbpath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd.. && pwd )
+adbpath=$adbpath+'/tools/android-sdk-linux/platform-tools'
+echo 'adbpath: ' + $adbpath
+
 #while [[ 1 ]]; do
 	#adb connect $ip:5555
-	adb -s $ip:5555 logcat -v threadtime | python /Users/hongyanyin/projects/taobao/test/serverside/source/app/services/scripts/parser.py -d$imei -i$ip
+	$adbpath/adb -s $ip:5555 logcat -v threadtime | python $currentpath/parser.py -d$imei -i$ip
 #done

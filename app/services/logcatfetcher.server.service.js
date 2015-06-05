@@ -6,7 +6,8 @@ var Device = require('mongoose').model('Device');
 var DeviceStatus = require('../models/devicestatus.server.model.js');
 
 var exec = require('child_process').exec;
-var commandPath='/Users/hongyanyin/projects/taobao/test/serverside/gitsource/logcatViewer/app/services/shell';
+var commandPath = __dirname + '/shell';
+var adbPath = __dirname + '/tools/android-sdk-linux/platform-tools';
 var fetcherShellName = 'remote-logcat-fetcher';
 var processMaxCount = 2;
 
@@ -53,7 +54,7 @@ exports.killFetcher = function(device) {
 
 //连接设备,更新设备在数据中的状态
 exports.connectDevice = function(device){
-    var command = 'adb connect ' + device.ip + ":5555";
+    var command = adbPath + '/adb connect ' + device.ip + ":5555";
     console.log('开始连接设备: ' + device.ip);
 
     var child = exec(command);
@@ -183,7 +184,7 @@ exports.hasFetcherRun = function (devcie, callback)
 
 //检查设备状态
 exports.checkDeviceState = function(device, callback){
-    var command = "adb devices";
+    var command = adbPath + '/adb devices';
     var onlineKeywords = [device.ip + '  device'];
     var keywords = [device.ip + '  device', device.ip + '  device'];
 
