@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="txt_instruction">false</item>
+    <item type="id" name="txt_message_title">false</item>
+    <item type="id" name="txt_imei">false</item>
+    <item type="id" name="txt_message">false</item>
+    <item type="id" name="start_button">false</item>
+    <item type="id" name="stop_button">false</item>
+    <item type="id" name="rate_button">false</item>
+    <item type="id" name="share_button">false</item>
+    <item type="id" name="settings">false</item>
+    <item type="id" name="rate_app">false</item>
+    <item type="id" name="share_app">false</item>
+</resources>

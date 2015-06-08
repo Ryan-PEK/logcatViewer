@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">RLogcat</string>
+    <string name="main_activity_name">RLogcat Beta2.0</string>
+    <string name="action_settings">设置</string>
+    <string name="connect_to">"Run the following command:
+"</string>
+    <string name="adb_command">adb connect</string>
+    <string name="error_wifi_not_enabled">Wifi not enabled, please enable wifi.</string>
+    <string name="instructions">"操作:
+1.保证手机通过wifi连接到内网.
+2.通过USB线用电脑连接手机.
+3.在电脑的命令行，执行 \"adb tcpip 5555\".
+4.拔掉USB线,点击下面的执行按钮."</string>
+    <string name="message_title">"执行状态显示在下面的信息框中..."</string>
+    <string name="settings">设置</string>
+    <string name="title_activity_settings">设置</string>
+    <string name="button_start">启动</string>
+    <string name="button_pause">暂停</string>
+    <string name="button_stop">停止</string>
+</resources>
