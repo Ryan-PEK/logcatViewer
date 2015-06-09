@@ -12,4 +12,5 @@ exports.connected ='已经连接';
 exports.tranfering='日志传输中';
 exports.transferstopped='日志传输中断';
 exports.stoppedbyuser='已停止';
+exports.clientipchange='客户端ip已改变';
 exports.null = null;

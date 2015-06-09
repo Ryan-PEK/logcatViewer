@@ -10,9 +10,9 @@ if [[ -z "$2" ]]; then
 	echo parameter ip is null
 	exit 0
 fi
-#check os
+#check clientos
 if [[ -z "$3" ]]; then
-	echo parameter os is null
+	echo parameter clientos is null
 	exit 0
 fi
 #check devcie model
@@ -23,17 +23,34 @@ fi
 
 imei=$1
 ip=$2
-os=$3
+clientos=$3
 model=$4s
 
 echo $imei
 echo $ip
-echo $os
+echo $clientos
 echo $model
 
+os=$(uname)
+
+echo "os: "
+echo $os
+
+if [ "$os" == "Darwin" ]; then
+  os=macosx
+fi
+
+if [ "$os" == "Linux" ]; then
+  os=linux
+fi
+
+echo "os: "
+echo $os
+
+
 currentpath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-adbpath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd.. && pwd )
-adbpath=$adbpath+'/tools/android-sdk-linux/platform-tools'
+adbpath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )
+adbpath=$adbpath/tools/android-sdk-$os/platform-tools
 echo 'adbpath: ' + $adbpath
 
 #while [[ 1 ]]; do

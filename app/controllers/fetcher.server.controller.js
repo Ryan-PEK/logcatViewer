@@ -15,8 +15,8 @@ exports.stop = function(req, res, next){
         } else {
             if (deviceInDb != null) {
                 Fetcher.stopFetcher(deviceInDb);
+                res.json(deviceInDb);
             }
         }
     });
-
 };

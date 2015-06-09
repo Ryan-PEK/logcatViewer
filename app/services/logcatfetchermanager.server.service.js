@@ -31,6 +31,7 @@ exports.handleDevice = function(device){
         case DeviceStatus.offline:
         case DeviceStatus.unauthorized:
         case DeviceStatus.unkown:
+        case DeviceStatus.clientipchange:
             //杀死可能存在的进程
             Fetcher.killFetcher(device);
             //启动连接进程

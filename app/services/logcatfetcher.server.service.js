@@ -7,12 +7,13 @@ var DeviceStatus = require('../models/devicestatus.server.model.js');
 
 var exec = require('child_process').exec;
 var commandPath = __dirname + '/shell';
-var adbPath = __dirname + '/tools/android-sdk-linux/platform-tools';
 var fetcherShellName = 'remote-logcat-fetcher';
 var processMaxCount = 2;
 
 var deviceOfflineKeywords = ['unable to connect to', '- waiting for device -'];
 var deviceOnlineKeywords = ['connected to'];
+
+var os = require('os');
 
 //杀死进程
 exports.killFetcher = function(device) {
@@ -54,7 +55,7 @@ exports.killFetcher = function(device) {
 
 //连接设备,更新设备在数据中的状态
 exports.connectDevice = function(device){
-    var command = adbPath + '/adb connect ' + device.ip + ":5555";
+    var command = getAdbpath() + '/adb connect ' + device.ip + ":5555";
     console.log('开始连接设备: ' + device.ip);
 
     var child = exec(command);
@@ -184,7 +185,7 @@ exports.hasFetcherRun = function (devcie, callback)
 
 //检查设备状态
 exports.checkDeviceState = function(device, callback){
-    var command = adbPath + '/adb devices';
+    var command = getAdbpath() + '/adb devices';
     var onlineKeywords = [device.ip + '  device'];
     var keywords = [device.ip + '  device', device.ip + '  device'];
 
@@ -203,6 +204,15 @@ exports.checkDeviceState = function(device, callback){
             }
         }
     });
+};
+
+function getAdbpath(){
+    var osplat = 'linux';
+    if(os.platform() == 'darwin')
+    {
+        osplat = 'macosx';
+    }
+    return __dirname + '/tools/android-sdk-' + osplat + '/platform-tools';
 };
 
 

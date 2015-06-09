@@ -17,7 +17,7 @@ exports.create = function(req, res, next){
                 //新设备,插入一条新纪录
                 device.creationTime = Date.now();
                 device.latestHeartbeat = Date.now();
-                device.status = '注册成功';
+                device.status = DeviceStatus.booked;
                 device.save(function(err){
                     if(err) {
 
@@ -28,7 +28,12 @@ exports.create = function(req, res, next){
             } else {
                 //执行更新,更新所有信息
                 device.latestHeartbeat = Date.now();
-                device.status = DeviceStatus.booked;
+                if(deviceInDb.ip != device.ip) {
+                    //ip改变
+                    device.status = DeviceStatus.clientipchange;
+                } else {
+                    device.status = DeviceStatus.booked;
+                }
                 var deviceJson = device.toJSON();
                 var key = '_id';
                 delete deviceJson[key];
