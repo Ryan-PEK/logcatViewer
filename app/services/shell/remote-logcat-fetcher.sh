@@ -26,15 +26,7 @@ ip=$2
 clientos=$3
 model=$4s
 
-echo $imei
-echo $ip
-echo $clientos
-echo $model
-
 os=$(uname)
-
-echo "os: "
-echo $os
 
 if [ "$os" == "Darwin" ]; then
   os=macosx
@@ -44,14 +36,9 @@ if [ "$os" == "Linux" ]; then
   os=linux
 fi
 
-echo "os: "
-echo $os
-
-
 currentpath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 adbpath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )
 adbpath=$adbpath/tools/android-sdk-$os/platform-tools
-echo 'adbpath: ' + $adbpath
 
 #while [[ 1 ]]; do
 	#adb connect $ip:5555

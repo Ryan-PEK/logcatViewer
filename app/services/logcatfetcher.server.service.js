@@ -16,6 +16,7 @@ var deviceOnlineKeywords = ['connected to'];
 var os = require('os');
 
 //杀死进程
+/*
 exports.killFetcher = function(device) {
     var script = commandPath + '/killp.sh' + ' ' + fetcherShellName + ' ' + device.imei;
     exports.hasFetcherRun(device,function(hasRun){
@@ -34,7 +35,7 @@ exports.killFetcher = function(device) {
         }
     });
 
-    script = commandPath + '/killp.sh' + ' \"adb -s ' + device.imei + ':5555\" logcat';
+    script = commandPath + '/killp.sh' + ' \"adb -s ' + device.ip + ':5555\" logcat';
     exports.hasFetcherRun(device,function(hasRun){
         if(hasRun)
         {
@@ -52,9 +53,55 @@ exports.killFetcher = function(device) {
     });
 
 };
+*/
+exports.killFetcher = function(device) {
+    var script = commandPath + '/killp.sh ' + fetcherShellName + ' ' + device.imei;
+    exec(script,
+        function (error, stdout, stderr) {
+            console.log('杀死进程输出: ' + stdout);
+            if (error != null) {
+                console.error('exec error: ' + error);
+            }
+
+            if(stdout != null){
+            }
+        });
+
+    script = commandPath + '/killp.sh ' + device.ip + ':5555 logcat';
+    exec(script,
+        function (error, stdout, stderr) {
+            console.log('杀死进程输出: ' + stdout);
+            if (error != null) {
+                console.error('exec error: ' + error);
+            }
+
+            if(stdout != null){
+            }
+        });
+};
+
+//杀死进程
+exports.killConnection = function(device) {
+    var script = commandPath + '/killp.sh \"adb connect\" ' + device.ip;
+
+    exec(script,
+        function (error, stdout, stderr) {
+            console.log('杀死进程输出: ' + stdout);
+            if (error != null) {
+                console.error('exec error: ' + error);
+            }
+
+            if(stdout != null){
+            }
+        });
+
+};
 
 //连接设备,更新设备在数据中的状态
 exports.connectDevice = function(device){
+
+    exports.killConnection(device);
+
     var command = getAdbpath() + '/adb connect ' + device.ip + ":5555";
     console.log('开始连接设备: ' + device.ip);
 
