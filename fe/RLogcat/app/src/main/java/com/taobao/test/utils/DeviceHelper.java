@@ -1,6 +1,7 @@
 package com.taobao.test.utils;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothClass;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -85,7 +86,9 @@ public class DeviceHelper {
     public static String stopFetcher(String imei)
     {
         String stopFetcherUrl = String.format("%s/%s", HOST, FETCH_STOP_METHOD);
-        String result = HttpHelper.post(stopFetcherUrl, "{'imei': " + imei + "}");
+        DeviceInfo info = new DeviceInfo();
+        info.setImei(imei);
+        String result = HttpHelper.post(stopFetcherUrl, info);
         return result;
     }
 

@@ -17,4 +17,5 @@
     <string name="button_start">启动</string>
     <string name="button_pause">暂停</string>
     <string name="button_stop">停止</string>
+    <string name="action_qr_scanner">扫一扫</string>
 </resources>
